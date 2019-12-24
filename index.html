@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>hi index.html</title>
+    <link href="https://fonts.googleapis.com/css?family=Butterfly+Kids|Roboto" rel="stylesheet"> 
+    <style>
+        div, p { color: #333333; margin: 3px;	}
+    </style>
+    
+    
+    
+    
+    
+    <script type = "text/javascript" 
+        src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+    </script>
+<!--    <script type = "text/javascript" 
+        src = "../handlebars-v4.5.3.js">
+    </script>
+    -->
+    <script type = "text/javascript" 
+        src = "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.5.3/handlebars.js">
+    </script>
+    <script type = "text/javascript">
+        function field_deskriptor_class (name, formal_type, content_type, explain, relates_to, prefix, suffix, additional_data, helper) {
+        
+            this.name = name
+            this.formal_type = formal_type      // "text-short", "text-long", "number", "bool", "complex" (Array or Object...)
+            this.content_type = content_type    // z.B. "Titel der Website", ""
+            this.explain = explain              // z.B. "Bitte geben Sie den Titel an!", "Titel"
+            this.relates_to = relates_to
+            this.prefix = prefix
+            this.suffix = suffix
+            this.additional_data = additional_data
+            this.helper = helper
+        
+        }
+    </script>
+    
+<script id="h_a1" type="text/x-handlebars-template"><!-- Kann man hier auch src="..." benutzen?  -->
+<title>{{title}}</title>
+</script>
+    <script>
+            $( document ).ready(function() {
+                var source = document.getElementById("h_a1").innerHTML;
+                var template = Handlebars.compile(source);
+                var context = { title : "hi "}
+                
+                var properties = {
+                    source : source ,
+                    template : template ,
+                    fields : ["title"]
+                }
+            });
+    </script>
+    
+    
+<script id="h_a1" type="text/x-handlebars-template"><!-- Kann man hier auch src="..." benutzen?  -->
+<title>{{title}}</title>
+</script>
+    <script>
+            $( document ).ready(function() {
+                var source = document.getElementById("h_a1").innerHTML;
+                var template = Handlebars.compile(source);
+                var context = { title : "hi "}
+                
+                var properties = {
+                    source : source ,
+                    template : template ,
+                    fields : ["title"]
+                }
+            });
+    </script>
+    
+    
+    
+    
+    
+    
+    
+</head>
+<body>
+
+
+</body>
+</html>
+
+
+
+

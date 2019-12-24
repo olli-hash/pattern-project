@@ -1,0 +1,10 @@
+.ajax_entry {   text-align:center; border: 1px solid black; padding: 30px 90px;   margin: 20px 300px;       }
+.ajax_entry * { box-sizing: border-box;  border: 1px solid #555; padding: 4px; margin: 5px; box-shadow: 2px 2px 2px 1px #555;
+    /*  x   y   blur  spread color   */
+}
+.ajax_entry textarea { height: 400px;       }
+.title_input {   width:90%;        }
+.entry_input {   width:90%;        }
+.categories_input {   width:90%;        }
+.buttons {   width:50%;        }
+    
