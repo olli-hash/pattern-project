@@ -22,20 +22,50 @@
     <script type = "text/javascript" 
         src = "https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.5.3/handlebars.js">
     </script>
-    <script type = "text/javascript">
-        function field_deskriptor_class (name, formal_type, content_type, explain, relates_to, prefix, suffix, additional_data, helper) {
+    <script type = "text/javascript" 
+        src = "olli_standard.js">
+    </script>
+    <script>
+    
+        function field_deskriptor_class (group_id, id, name, init_value, formal_type, content_type, explain, relates_to, prefix, suffix, additional_data, helper) {
         
+            this.group_id = group_id
+            this.id = id
             this.name = name
+            this.init_value = init_value
             this.formal_type = formal_type      // "text-short", "text-long", "number", "bool", "complex" (Array or Object...)
             this.content_type = content_type    // z.B. "Titel der Website", ""
             this.explain = explain              // z.B. "Bitte geben Sie den Titel an!", "Titel"
             this.relates_to = relates_to
-            this.prefix = prefix
-            this.suffix = suffix
+            this.prefix = prefix    // means "min" in number context
+            this.suffix = suffix    // means "max" in number context
             this.additional_data = additional_data
             this.helper = helper
         
         }
+        
+        
+        
+        field_deskriptor_class.prototype.apply_template = function() {
+        
+            
+            l("hi apply_template")
+        
+        
+        
+        }
+        
+        
+        
+        function apply_fn(){
+        
+            l("hi apply_fn")
+        
+        
+        }
+        
+        
+        
     </script>
     
 <script id="h_a1" type="text/x-handlebars-template"><!-- Kann man hier auch src="..." benutzen?  -->
@@ -45,12 +75,12 @@
             $( document ).ready(function() {
                 var source = document.getElementById("h_a1").innerHTML;
                 var template = Handlebars.compile(source);
-                var context = { title : "hi "}
                 
-                var properties = {
+                var bigger_template = {
                     source : source ,
                     template : template ,
-                    fields : ["title"]
+                    fields : [new field_deskriptor_class(0, 0, "title", "hi", "text-short", "title_for_doc" )   ],
+                    apply: apply_fn
                 }
             });
     </script>
