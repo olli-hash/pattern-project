@@ -6,6 +6,9 @@
     <link href="https://fonts.googleapis.com/css?family=Butterfly+Kids|Roboto" rel="stylesheet"> 
     <style>
         div, p { color: #333333; margin: 3px;	}
+		
+		.raw_template { padding: 10px; margin-bottom: 22px; background-color: #fefefe; box-shadow: 10px 10px 8px 10px #888888;     }
+
     </style>
     
     
@@ -70,7 +73,17 @@
  
  */       
 
+// --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- 
+
+
 		var all_templates = []				//   *global*
+
+
+
+
+// --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- 
+
+
 
 
         function field_deskriptor_class (name, possible_values, field_relations, type_o ) {
@@ -101,11 +114,11 @@
             l("hi apply_template()")
         }
         
-        field_deskriptor_class.prototype.getvalue(field) = function() {
+        field_deskriptor_class.prototype.getvalue = function(field) {
             l("hi getvalue()")
         }
         
-		field_deskriptor_class.prototype.show(field) = function() {
+		field_deskriptor_class.prototype.show = function(field) {
             l("hi getvalue()")
         }
         
@@ -284,6 +297,25 @@
         }
 
 
+		template_class.prototype.sourcedisplay = function(){
+			var a = "<div class='raw_template'>"
+			var b = "</div>"
+			return  a + zerotemplate({ zero : this.source}) + b
+
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
         
         $( document ).ready(function() {
         
@@ -302,6 +334,38 @@
 
         
     </script>
+
+<script id="zero" type="text/x-handlebars-template"><!-- Kann man hier auch src="..." benutzen?  -->
+{{zero}}
+</script>
+	<script>
+            $( document ).ready(function() {
+				
+				zerotemplate = Handlebars.compile(document.getElementById("zero").innerHTML)
+				all_templates.push(zerotemplate)
+
+            })
+    </script>
+
+    
+
+<script id="zero_unescaped" type="text/x-handlebars-template"><!-- Kann man hier auch src="..." benutzen?  -->
+{{{zero}}}
+</script>
+	<script>
+            $( document ).ready(function() {
+				
+				zerotemplate = Handlebars.compile(document.getElementById("zero_unescaped").innerHTML)
+				all_templates.push(zerotemplate)
+
+            })
+    </script>
+
+    
+
+
+
+
     
 <script id="aaa" type="text/x-handlebars-template"><!-- Kann man hier auch src="..." benutzen?  -->
 <title>{{title}}</title>
@@ -359,6 +423,64 @@
     </script>
     
     
+
+
+
+<script id="002" type="text/x-handlebars-template">
+<div class="{{css_class1}}"><span class="{{css_class2}}">{{name}}</span><span class="{{css_class3}}">{{value}}</span></div>
+</script>
+    <script>                         
+    
+            $( document ).ready(function() {
+				
+				
+				// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
+                var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
+								new field_typer_class("text-short")  )  ,
+
+							new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
+								new field_typer_class("text-short")  )  
+
+				 ]
+				
+				var template_tags = ["", "", ""]
+											// (source_id, name, tags, fields)
+				var template = new template_class("002","body_", template_tags, fields)
+				
+				all_templates.push(template)
+
+            });
+    </script>
+    
+    
+
+<script id="003" type="text/x-handlebars-template">
+<div class="{{css_class1}}"><span class="{{css_class2}}">{{name}}</span><span class="{{css_class3}}">{{value}}</span></div>
+</script>
+    <script>                         
+    
+            $( document ).ready(function() {
+				
+				
+				// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
+                var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
+								new field_typer_class("text-short")  )  ,
+
+							new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
+								new field_typer_class("text-short")  )  
+
+				 ]
+				
+				var template_tags = ["", "", ""]
+											// (source_id, name, tags, fields)
+				var template = new template_class("003","body_", template_tags, fields)
+				
+				all_templates.push(template)
+
+            });
+    </script>
+    
+    
     
     
 
@@ -372,8 +494,13 @@
 <script>
         $( document ).ready(function() {
 
-		$(document.body).append(all_templates[1].source)
-            
+
+			for (var i = 0; i < all_templates.length; i++) {
+
+				$(document.body).append(all_templates[i].source)
+				$(document.body).append(all_templates[i].sourcedisplay())
+				    
+			}
 
         });
 </script>
