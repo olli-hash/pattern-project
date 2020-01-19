@@ -75,7 +75,9 @@
 
 // --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- 
 
-
+                // <_> head script <_>
+        
+        
 		var all_templates = []				//   *global*
 
 
@@ -83,14 +85,114 @@
 
 // --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- 
 
+/*
+	var afield = new field_deskriptor_class()
 
+	afield.config()
 
+	afield.add_callback()
+*/
 
-        function field_deskriptor_class (name, possible_values, field_relations, type_o ) {
+                // <_> head script <_>
+    
+    
+                function project_class (name, properties) {
+                
+                    this.name = name
+                    this.properties = properties
+                    
+                    
+                    
+                    
+                    
+                    /*
+                    .name .output_type .properties .work1 . work2
+                    
+                    .basic_idea 
+                    
+                    
+                    
+                    
+                    properties.docs.html/js/css/…
+                    
+                    
+                    properties.
+                    properties.
+                    properties.get()
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    */ 
+                }
+                
+                
+                function outputset_class() {
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                }
+                
+                
+                
+                
+    
+    
+                function connection_class (ins, outs) {
+                
+                    this.ins = ins
+                    
+                    this.outs = outs
+                    
+                    /*
+                    
+                    
+                    Eine Connection vermittelt ggf. zwischen einem Project Field und dem Template Field eines "veräußerten"
+                    Template Objects.
+                    
+                
+                
+                
+                
+                    */  
+                }
+    
+    
+    
+    
+    
+                function field_deskriptor_class (name, connectivity ) {
+                
+                    this.name = name 
+                    this.connectivity = connectivity
+                    
+                    //this.field_relations = field_relations
+                    //this.type = type_o
+
+                    
+/*        function field_deskriptor_class (name, alternative_names, possible_values, typical_values , 
+
+																					      field_relations, type_o ) {
                                                             // formal_type, content_type, grammar_type
             
             this.name = name 							// name as notated in template handlebar expression
+			
+			this.alternative_names = alternative_names || []
+
+
             this.possible_values = possible_values		// array of possible values
+
+
+			this.possible_value_sources = possible_value_sources
             
             
             //this.type_description = `Some '${this.formal_type}' to provide '${this.content_type}'`
@@ -100,7 +202,7 @@
             
             this.field_relations = field_relations
             this.type = type_o
-            
+          */  
             
             
             //this.relates_to = relates_to
