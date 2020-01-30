@@ -96,12 +96,12 @@
                 // <_> head script <_>
     
     
-                function project_class (name, properties) {
+                function project_class (name) {
                 
                     this.name = name
-                    this.properties = properties
+                    //this.properties = properties
                     
-                    
+                    this.doc = ""
                     
                     
                     
@@ -389,22 +389,29 @@
         
         function template_class(source_id, name, tags, fields) {   //  template types ??  ... solved by "tags" ?
 
-            l("hi template_class")
-	 		this.source = document.getElementById(source_id).innerHTML
-			this.template = Handlebars.compile(this.source)
-			this.name = name
-			this.tags = tags
-			this.fields = fields
+           // l("hi template_class")
+            this.source = document.getElementById(source_id).innerHTML
+            this.template = Handlebars.compile(this.source)
+            this.name = name
+            this.tags = tags
+            this.fields = fields
 
         }
 
 
-		template_class.prototype.sourcedisplay = function(){
-			var a = "<div class='raw_template'>"
-			var b = "</div>"
-			return  a + zerotemplate({ zero : this.source}) + b
+        template_class.prototype.sourcedisplay = function(){
+                var a = "<div class='raw_template'>"
+                var b = "</div>"
+                return  a + zerotemplate_0({ zero : this.source}) + b
 
-		}
+        }
+
+        template_class.prototype.sourcedisplay_highlighted = function(){
+                var a = "<div class='raw_template'>"
+                var b = "</div>"
+                return  a + zerotemplate_0({ zero : this.template()}) + b
+
+        }
 
 
 
@@ -457,8 +464,8 @@
 	<script>
             $( document ).ready(function() {
 				
-				zerotemplate = Handlebars.compile(document.getElementById("zero_unescaped").innerHTML)
-				all_templates.push(zerotemplate)
+				zerotemplate_0 = Handlebars.compile(document.getElementById("zero_unescaped").innerHTML)
+				all_templates.push(zerotemplate_0)
 
             })
     </script>
