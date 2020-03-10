@@ -405,8 +405,8 @@
         function template_class(source_id, name, tags, fields) {   //  template types ??  ... solved by "tags" ?
 
            // l("hi template_class")
-            this.source = document.getElementById(source_id).innerHTML
-            this.template = Handlebars.compile(this.source)
+            this.source = document.getElementById(source_id).innerHTML          // String !
+            this.template = Handlebars.compile(this.source)                     // Function !  , depends on String
             this.name = name
             this.tags = tags
             this.fields = fields
@@ -421,13 +421,14 @@
 
         }
 
+        /*
         template_class.prototype.sourcedisplay_highlighted = function(){
                 var a = "<div class='raw_template'>"
                 var b = "</div>"
                 return  a + zerotemplate_0({ zero : this.template()}) + b
 
         }
-
+*/
 
 
 
@@ -465,8 +466,15 @@
 	<script>
             $( document ).ready(function() {
 				
+				
+				// *global* //
+				
 				zerotemplate = Handlebars.compile(document.getElementById("zero").innerHTML)
-				all_templates.push(zerotemplate)
+				
+				var template_tags = ["", "", ""]
+				var field_tags = ["", "", ""]
+				var template = new template_class("zero","zero1", template_tags, field_tags)
+				all_templates.push(template)
 
             })
     </script>
@@ -479,9 +487,14 @@
 	<script>
             $( document ).ready(function() {
 				
+				// *global* //
 				zerotemplate_0 = Handlebars.compile(document.getElementById("zero_unescaped").innerHTML)
-				all_templates.push(zerotemplate_0)
-
+				
+				var template_tags = ["", "", ""]
+				var field_tags = ["", "", ""]
+				var template = new template_class("zero_unescaped","zero2", template_tags, field_tags)
+				all_templates.push(template)
+				
             })
     </script>
 

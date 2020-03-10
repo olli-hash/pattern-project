@@ -1,0 +1,84 @@
+
+§×÷·
+
+Æ
+
+
+
+
+__________template_class__________ (source_id, name, tags, fields)
+
+
+sourcedisplay()
+sourcedisplay_highlighted()
+
+
+
+
+
+
+
+
+
+
+
+??? Templating of JS
+- Inserting HTML-JS-Hooks
+
+												global generator_context 
+			   									global generator_context    pure HTML / Hbs-HTML
+
+# Organisation Of Templates
+(in an array  –  array list properties?   )
+
+(Templates are tagged. Tags indicate template characteristics and functionality, output type)
+
+
+Templates are visible text on the screen. The (template)language is "handlebars".
+
+
+
+
+
+# Organisation Of Global-Project-Data
+
+
+
+# Object Design Of A Template
+(pure source with Hbs-Expressions)		PURE SOURCE
+(Hbs-compiled template function)
+
+(additional field data)   FIELD-INFORMATION
+(data on the template)
+((output type))
+
+(push_to_generator_context())
+
+
+- Config Form Production
+- Generating Hbs-Context-Objects  via FIELD-INFORMATION
+
+
+- Template Transforming / Renaming of Fields ^^^
+
+
+- Template Cloning / Instanciation    (Instanziierung)
+
+
+
+- Field Handling
+
+
+
+
+% Window Handling
+
+
+
+
+
+
+
+
+
+
