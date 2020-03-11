@@ -7,8 +7,10 @@
     <style>
         div, p { color: #333333; margin: 3px;	}
 		
-		.raw_template { padding: 10px; margin-bottom: 22px; background-color: #fefefe; box-shadow: 10px 10px 8px 10px #888888;     }
-
+		.raw_template {   white-space: pre;   padding: 10px; margin-bottom: 22px; background-color: #fefefe; box-shadow: 1px 1px 3px 2px #888888;     }
+                .float_left {  float:left;     }
+                .template_heading {       }
+                .bold { font-weight: bold;    }
     </style>
     
     
@@ -402,6 +404,11 @@
             l("hi apply_fn")
         }
         
+        
+        // *global* //
+        global_templates = Object.create(null)
+        
+                
         function template_class(source_id, name, tags, fields) {   //  template types ??  ... solved by "tags" ?
 
            // l("hi template_class")
@@ -417,9 +424,24 @@
         template_class.prototype.sourcedisplay = function(){
                 var a = "<div class='raw_template'>"
                 var b = "</div>"
-                return  a + zerotemplate_0({ zero : this.source}) + b
+                return  a + global_templates["zerotemplate"]({ zero : this.source}) + b
 
         }
+        
+        
+        template_class.prototype.list_template = function(more){
+
+                var o = {   index : more ,  name : this.name ,  tags : this.tags.join() , template : this.source        }
+                
+                return global_templates["list_template"](o)
+
+        }
+        
+        
+        
+        
+        
+        
 
         /*
         template_class.prototype.sourcedisplay_highlighted = function(){
@@ -460,41 +482,64 @@
         
     </script>
 
-<script id="zero" type="text/x-handlebars-template"><!-- Kann man hier auch src="..." benutzen?  -->
-{{zero}}
-</script>
+    
+<!-- Kann man hier auch src="..." benutzen?  -->
+<script id="zero" type="text/x-handlebars-template">{{zero}}</script>
 	<script>
             $( document ).ready(function() {
 				
-				
 				// *global* //
+				global_templates["zerotemplate"] = Handlebars.compile(document.getElementById("zero").innerHTML)
 				
-				zerotemplate = Handlebars.compile(document.getElementById("zero").innerHTML)
-				
-				var template_tags = ["", "", ""]
+				var template_tags = ["system"]
 				var field_tags = ["", "", ""]
 				var template = new template_class("zero","zero1", template_tags, field_tags)
 				all_templates.push(template)
-
             })
     </script>
 
     
 
-<script id="zero_unescaped" type="text/x-handlebars-template"><!-- Kann man hier auch src="..." benutzen?  -->
-{{{zero}}}
+<script id="zero_unescaped" type="text/x-handlebars-template">{{{zero}}}</script>
+	<script>
+            $( document ).ready(function() {
+				
+				// *global* //
+				global_templates["zerotemplate_0"] = Handlebars.compile(document.getElementById("zero_unescaped").innerHTML)
+				
+				var template_tags = ["system"]
+				var field_tags = ["", "", ""]
+				var template = new template_class("zero_unescaped","zero2", template_tags, field_tags)
+				all_templates.push(template)
+            })
+    </script>
+
+
+    
+<script id="system_listtemplate" type="text/x-handlebars-template">
+<div class='float_left template_heading'>
+[{{index}}]
+</div>
+<div class='float_left template_heading bold'>
+{{name}}
+</div>
+<div class='float_left template_heading'>
+{{tags}}
+</div>
+<br style='clear:all'>
+<div class='raw_template'>{{template}}</div>
 </script>
 	<script>
             $( document ).ready(function() {
 				
 				// *global* //
-				zerotemplate_0 = Handlebars.compile(document.getElementById("zero_unescaped").innerHTML)
 				
-				var template_tags = ["", "", ""]
+				global_templates["list_template"] = Handlebars.compile(document.getElementById("system_listtemplate").innerHTML)
+				
+				var template_tags = ["system"]
 				var field_tags = ["", "", ""]
-				var template = new template_class("zero_unescaped","zero2", template_tags, field_tags)
+				var template = new template_class("system_listtemplate","list_template", template_tags, field_tags)
 				all_templates.push(template)
-				
             })
     </script>
 
@@ -504,7 +549,7 @@
 
 
     
-<script id="aaa" type="text/x-handlebars-template"><!-- Kann man hier auch src="..." benutzen?  -->
+<script id="aaa" type="text/x-handlebars-template">
 <title>{{title}}</title>
 </script>
     <script>
@@ -514,17 +559,13 @@
 
 				// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
 
-                var fields = [new field_deskriptor_class( "", "", "", "title", "hi", [], [], 
+                                var fields = [new field_deskriptor_class( "", "", "", "title", "hi", [], [], 
 								new field_typer_class("text-short", "title_for_doc", "Website-Titel")  )   ]
-				
-				var template_tags = ["", "", ""]
-
+				var template_tags = ["html-head", "basic"]
 											// (source_id, name, tags, fields)
 				var template = new template_class("aaa","head_title_tag", template_tags, fields)
 				
 				all_templates.push(template)
-				
-
             });
     </script>
 
@@ -542,7 +583,7 @@
 				
 				
 				// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
-                var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
+                                var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
 								new field_typer_class("text-short")  )  ,
 
 							new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
@@ -550,12 +591,11 @@
 
 				 ]
 				
-				var template_tags = ["", "", ""]
+				var template_tags = ["html-body", "basic"]
 											// (source_id, name, tags, fields)
-				var template = new template_class("001","body_", template_tags, fields)
+				var template = new template_class("001","name_and_value", template_tags, fields)
 				
 				all_templates.push(template)
-
             });
     </script>
     
@@ -564,7 +604,7 @@
 
 
 <script id="002" type="text/x-handlebars-template">
-<div class="{{css_class1}}"><span class="{{css_class2}}">{{name}}</span><span class="{{css_class3}}">{{value}}</span></div>
+<div class="name_value"><span class="{{css_class1}}">{{name}}</span><span class="{{css_class2}}">{{value}}</span></div>
 </script>
     <script>                         
     
@@ -572,7 +612,7 @@
 				
 				
 				// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
-                var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
+                                var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
 								new field_typer_class("text-short")  )  ,
 
 							new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
@@ -580,9 +620,9 @@
 
 				 ]
 				
-				var template_tags = ["", "", ""]
+				var template_tags = ["html-body", "basic"]
 											// (source_id, name, tags, fields)
-				var template = new template_class("002","body_", template_tags, fields)
+				var template = new template_class("002","name_and_value_1", template_tags, fields)
 				
 				all_templates.push(template)
 
@@ -600,7 +640,7 @@
 				
 				
 				// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
-                var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
+                                var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
 								new field_typer_class("text-short")  )  ,
 
 							new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
@@ -608,22 +648,14 @@
 
 				 ]
 				
-				var template_tags = ["", "", ""]
+				var template_tags = ["html-body", "basic"]
 											// (source_id, name, tags, fields)
-				var template = new template_class("003","body_", template_tags, fields)
+				var template = new template_class("003","name_and_value_2", template_tags, fields)
 				
 				all_templates.push(template)
 
             });
     </script>
-    
-    
-    
-    
-
-    
-    
-    
     
     
     
@@ -634,8 +666,7 @@
 
 			for (var i = 0; i < all_templates.length; i++) {
 
-				$(document.body).append(all_templates[i].source)
-				$(document.body).append(all_templates[i].sourcedisplay())
+				$(document.body).append(all_templates[i].list_template(i))
 				    
 			}
 
