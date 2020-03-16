@@ -36,24 +36,30 @@
     <script>
 // --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- 
 
-                // head script
+                // <head> <script>
         
         
 		var all_templates = []				//   *global*
 
+
+		var project_manager = {}
+		
+		project_manager.projects = []
                 
-                function project_manager() {
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                }
+		project_manager.list_all_projects() {
+		
+			for (var i = 0; i < this.projects.length; i++) {
+			
+				$(document.body).append()
+		
+		
+			}
+		
+		
+		
+		
+		
+		}
                 
                 
                 
@@ -530,6 +536,23 @@
     </script>
 
 
+<script id="system_list_project" type="text/x-handlebars-template">
+{{{zero}}}
+</script>
+	<script>
+            $( document ).ready(function() {
+				
+				// *global* //
+				global_templates["list_project"] = Handlebars.compile(document.getElementById("system_list_project").innerHTML)
+				
+				var template_tags = ["system", "master-project"]
+				var field_tags = ["", "", ""]
+				var template = new template_class("system_list_project","list_project", template_tags, field_tags)
+				all_templates.push(template)
+            })
+    </script>
+
+
     
 <script id="system_listtemplate" type="text/x-handlebars-template">
 <div class='float_left template_heading'>
@@ -698,7 +721,7 @@
                         
                         
                         
-                        project_manager()
+                        project_manager.list_all_projects()
                         
                         
                         
