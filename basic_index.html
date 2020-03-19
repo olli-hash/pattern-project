@@ -35,7 +35,7 @@
     </script>
     <script>
     
-        var l = console.log.bind(console)
+        var l = console.log.bind(console)	//   *global*
     
     </script>
 <!--   ..............................................................................................   -->
@@ -48,26 +48,24 @@
 		var all_templates = []				//   *global*
 
 
-		var project_manager = {}
+		var project_manager = {}			//   *global*
 		project_manager.projects = []
-		
-		
-                
+		  
 		project_manager.list_all_projects = function () {
 			for (var i = 0; i < this.projects.length; i++) {
-			
 				$("#main1").append(this.projects[i].name + "<br>")
 			}
 		}
 		
 		project_manager.runfirst = function () {
-		
 			this.projects[0].run()
-
 		}
 		
+		var p1 = new project_class("first Project!")
+		project_manager.projects.push(p1)
 		
-		project_manager.projects.push(new project_class("first Project!"))
+		
+		
 		
 		
 
@@ -126,19 +124,48 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 		
 			this.name = name
 			
-			this.docs = []
+			this.now_main_html_id = "#main1"
 			
-			this.clipboards = []
+			this.files = {}
 			
 		}
 		
-			project_class.prototype.run = function (html_id) {
+			project_class.prototype.run = function (hello) {
 			
-				html_id = html_id || "#main1"
+				hello = hello || "test AA"
 				
-				alert(html_id)
+				$(this.now_main_html_id).append(hello)
+				
+				this.new_clipboard()
 			
 			}
+			
+			project_class.prototype.new_clipboard = function (name, file) {
+			
+				if (! name) name = "clip1"
+				if (! file) file = "index.html"
+				
+				$(this.now_main_html_id).append(name + file + "<br>")
+				
+				
+				if (this.files[file]) {
+					this.files[file].clipboards.push(new clipboard_class(name))
+				}
+				else {
+					this.files[file] = {}
+					this.files[file].clipboards = []
+					this.files[file].clipboards.push(new clipboard_class(name))
+				}
+				
+				$(this.now_main_html_id).append(this.files[file])
+				
+			
+			}
+		
+		function clipboard_class (name) {
+			this.name = name
+		}
+		
 		
 		
 		function document_class (name) {
