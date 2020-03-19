@@ -7,6 +7,12 @@
     <style>
         div, p { color: #333333; margin: 3px;	}
 		
+		#start0, #start1, #start2 { color: #333333; margin: 3px;  padding: 5px;  background-color: green;     }
+		#main0, #main1, #main2 { color: #333333; margin: 3px;  padding: 5px;  background-color: yellow;     }
+		#end0, #end1, #end2 { color: #333333; margin: 3px;  padding: 5px;  background-color: Crimson;     }
+		
+		
+		
 		.raw_template {   white-space: pre;   padding: 10px; margin-bottom: 22px; background-color: #fefefe; box-shadow: 1px 1px 3px 2px #888888;     }
                 .float_left {  float:left;     }
                 .template_heading {       }
@@ -21,7 +27,7 @@
         src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
     </script>
 <!--    <script type = "text/javascript" 
-        src = "../handlebars-v4.5.3.js">
+        src = "">
     </script>
     -->
     <script type = "text/javascript" 
@@ -43,37 +49,34 @@
 
 
 		var project_manager = {}
-		
 		project_manager.projects = []
-                
-		project_manager.list_all_projects() {
 		
+		
+                
+		project_manager.list_all_projects = function () {
 			for (var i = 0; i < this.projects.length; i++) {
 			
-				$(document.body).append()
-		
-		
+				$("#main1").append(this.projects[i].name + "<br>")
 			}
-		
-		
-		
-		
-		
 		}
-                
-                
-                
+		
+		project_manager.runfirst = function () {
+		
+			this.projects[0].run()
 
+		}
+		
+		
+		project_manager.projects.push(new project_class("first Project!"))
+		
+		
 
 // --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- 
 
-    
-        //function field_deskriptor_class (group_id, id, name, init_value, formal_type, content_type, explain, relates_to, prefix, suffix, additional_data, helper) {
+/*
+function field_deskriptor_class (group_id, id, name, init_value, formal_type, content_type, explain, relates_to, prefix, suffix, additional_data, helper) {
         
-        
-        
-        
-/*      function field_deskriptor_class (name, init_value, formal_type, content_type, template_context, htmlid_context, htmlclass_context, application_context) {
+function field_deskriptor_class (name, init_value, formal_type, content_type, template_context, htmlid_context, htmlclass_context, application_context) {
         
             template_context.      // == template path
                 __.parents   __.path  __.pathup __.pathdown  
@@ -105,11 +108,8 @@
                                                 
                                         groß, klein, betont, nicht-betont, …
                                             
-                                            
-                                            
- 
- 
- */       
+
+*/       
 
 
 /*
@@ -120,68 +120,55 @@
 	afield.add_callback()
 */
 
+		// head script
 
-
-
-
-                // head script ###
-
-
-
-
-
-
-
-                // head script
-    
-                function project_class (name) {
-                
-                    this.name = name
-                    //this.properties = properties
-                    
-                    this.doc = ""
-                    
-                    
-                    
-                    /*
-                    .name .output_type .properties .work1 . work2
-                    
-                    .basic_idea 
-                    
-                    
-                    
-                    
-                    properties.docs.html/js/css/…
-                    
-                    
-                    properties.
-                    properties.
-                    properties.get()
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    */ 
-                }
-                
-                
-                function outputset_class() {
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                }
-                
-                
-                
+		function project_class (name) {
+		
+			this.name = name
+			
+			this.docs = []
+			
+			this.clipboards = []
+			
+		}
+		
+			project_class.prototype.run = function (html_id) {
+			
+				html_id = html_id || "#main1"
+				
+				alert(html_id)
+			
+			}
+		
+		
+		function document_class (name) {
+		
+			this.name = name
+			this.areas = []
+		
+		}
+				
+			document_class.prototype.add_area = function (area) {
+			
+				this.areas.push(area)
+			
+			}
+			
+			function document_area_class (before, content, after) {
+			
+				this.before = before
+				this.content = content
+				this.after = after
+			
+			}
+			
+			document_area_class.prototype.join = function (x) {
+			
+				return this.before + x + this.content + x + this.after
+			
+			}
+				
+				
                 
     
     
@@ -506,55 +493,55 @@
     
 <!-- Kann man hier auch src="..." benutzen?  -->
 <script id="zero" type="text/x-handlebars-template">{{zero}}</script>
-	<script>
-            $( document ).ready(function() {
-				
-				// *global* //
-				global_templates["zerotemplate"] = Handlebars.compile(document.getElementById("zero").innerHTML)
-				
-				var template_tags = ["system"]
-				var field_tags = ["", "", ""]
-				var template = new template_class("zero","zero1", template_tags, field_tags)
-				all_templates.push(template)
-            })
-    </script>
+<script>
+	$( document ).ready(function() {
+		
+		// *global* //
+		global_templates["zerotemplate"] = Handlebars.compile(document.getElementById("zero").innerHTML)
+		
+		var template_tags = ["system"]
+		var fields = [{}]
+		var template = new template_class("zero","zero1", template_tags, fields)
+		all_templates.push(template)
+	})
+</script>
 
     
 
 <script id="zero_unescaped" type="text/x-handlebars-template">{{{zero}}}</script>
-	<script>
-            $( document ).ready(function() {
-				
-				// *global* //
-				global_templates["zerotemplate_0"] = Handlebars.compile(document.getElementById("zero_unescaped").innerHTML)
-				
-				var template_tags = ["system"]
-				var field_tags = ["", "", ""]
-				var template = new template_class("zero_unescaped","zero2", template_tags, field_tags)
-				all_templates.push(template)
-            })
-    </script>
+<script>
+	$( document ).ready(function() {
+		
+		// *global* //
+		global_templates["zerotemplate_0"] = Handlebars.compile(document.getElementById("zero_unescaped").innerHTML)
+		
+		var template_tags = ["system"]
+		var fields = [{}]
+		var template = new template_class("zero_unescaped","zero2", template_tags, fields)
+		all_templates.push(template)
+	})
+</script>
 
 
 <script id="system_list_project" type="text/x-handlebars-template">
 {{{zero}}}
 </script>
-	<script>
-            $( document ).ready(function() {
-				
-				// *global* //
-				global_templates["list_project"] = Handlebars.compile(document.getElementById("system_list_project").innerHTML)
-				
-				var template_tags = ["system", "master-project"]
-				var field_tags = ["", "", ""]
-				var template = new template_class("system_list_project","list_project", template_tags, field_tags)
-				all_templates.push(template)
-            })
-    </script>
+<script>
+	$( document ).ready(function() {
+		
+		// *global* //
+		global_templates["list_project"] = Handlebars.compile(document.getElementById("system_list_project").innerHTML)
+		
+		var template_tags = ["system", "master-project"]
+		var fields = [{}]
+		var template = new template_class("system_list_project","list_project", template_tags, fields)
+		all_templates.push(template)
+	})
+</script>
 
 
     
-<script id="system_listtemplate" type="text/x-handlebars-template">
+<script id="system_list_template" type="text/x-handlebars-template">
 <div class='float_left template_heading'>
 [{{index}}]
 </div>
@@ -567,19 +554,19 @@
 <br style='clear:all'>
 <div class='raw_template'>{{template}}</div>
 </script>
-	<script>
-            $( document ).ready(function() {
-				
-				// *global* //
-				
-				global_templates["list_template"] = Handlebars.compile(document.getElementById("system_listtemplate").innerHTML)
-				
-				var template_tags = ["system"]
-				var field_tags = ["", "", ""]
-				var template = new template_class("system_listtemplate","list_template", template_tags, field_tags)
-				all_templates.push(template)
-            })
-    </script>
+<script>
+	$( document ).ready(function() {
+		
+		// *global* //
+		
+		global_templates["list_template"] = Handlebars.compile(document.getElementById("system_list_template").innerHTML)
+		
+		var template_tags = ["system"]
+		var fields = [{},{},{},{}]
+		var template = new template_class("system_list_template","list_template", template_tags, fields)
+		all_templates.push(template)
+	})
+</script>
 
     
 
@@ -590,22 +577,23 @@
 <script id="aaa" type="text/x-handlebars-template">
 <title>{{title}}</title>
 </script>
-    <script>
-            $( document ).ready(function() {
-				
-				
+<script>
+	$( document ).ready(function() {
+	
+		// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
 
-				// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
 
-                                var fields = [new field_deskriptor_class( "", "", "", "title", "hi", [], [], 
-								new field_typer_class("text-short", "title_for_doc", "Website-Titel")  )   ]
-				var template_tags = ["html-head", "basic"]
-											// (source_id, name, tags, fields)
-				var template = new template_class("aaa","head_title_tag", template_tags, fields)
-				
-				all_templates.push(template)
-            });
-    </script>
+		// deprecated:
+		var fields = [new field_deskriptor_class( "", "", "", "title", "hi", [], [], 
+						new field_typer_class("text-short", "title_for_doc", "Website-Titel")  )   ]
+						
+		var template_tags = ["html-head", "basic"]
+									// (source_id, name, tags, fields)
+		var template = new template_class("aaa","head_title_tag", template_tags, fields)
+		
+		all_templates.push(template)
+	});
+</script>
 
     
     
@@ -615,27 +603,27 @@
 <script id="001" type="text/x-handlebars-template">
 <div><span>{{name}}</span><span>{{value}}</span></div>
 </script>
-    <script>                         
-    
-            $( document ).ready(function() {
-				
-				
-				// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
-                                var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
-								new field_typer_class("text-short")  )  ,
+<script>                         
 
-							new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
-								new field_typer_class("text-short")  )  
+	$( document ).ready(function() {
+		
+		
+		// deprecated
+		var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
+						new field_typer_class("text-short")  )  ,
 
-				 ]
-				
-				var template_tags = ["html-body", "basic"]
-											// (source_id, name, tags, fields)
-				var template = new template_class("001","name_and_value", template_tags, fields)
-				
-				all_templates.push(template)
-            });
-    </script>
+					new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
+						new field_typer_class("text-short")  )  
+
+		 ]
+		
+		var template_tags = ["html-body", "basic"]
+									// (source_id, name, tags, fields)
+		var template = new template_class("001","name_and_value", template_tags, fields)
+		
+		all_templates.push(template)
+	});
+</script>
     
     
 
@@ -644,96 +632,88 @@
 <script id="002" type="text/x-handlebars-template">
 <div class="name_value"><span class="{{css_class1}}">{{name}}</span><span class="{{css_class2}}">{{value}}</span></div>
 </script>
-    <script>                         
-    
-            $( document ).ready(function() {
-				
-				
-				// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
-                                var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
-								new field_typer_class("text-short")  )  ,
+<script>                         
 
-							new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
-								new field_typer_class("text-short")  )  
+	$( document ).ready(function() {
+		
+		
+		// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
+						var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
+						new field_typer_class("text-short")  )  ,
 
-				 ]
-				
-				var template_tags = ["html-body", "basic"]
-											// (source_id, name, tags, fields)
-				var template = new template_class("002","name_and_value_1", template_tags, fields)
-				
-				all_templates.push(template)
+					new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
+						new field_typer_class("text-short")  )  
 
-            });
-    </script>
+		 ]
+		
+		var template_tags = ["html-body", "basic"]
+									// (source_id, name, tags, fields)
+		var template = new template_class("002","name_and_value_1", template_tags, fields)
+		
+		all_templates.push(template)
+
+	});
+</script>
     
     
 
 <script id="003" type="text/x-handlebars-template">
 <div class="{{css_class1}}"><span class="{{css_class2}}">{{name}}</span><span class="{{css_class3}}">{{value}}</span></div>
 </script>
-    <script>                         
-    
-            $( document ).ready(function() {
-				
-				
-				// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
-                                var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
-								new field_typer_class("text-short")  )  ,
+<script>                         
 
-							new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
-								new field_typer_class("text-short")  )  
+	$( document ).ready(function() {
+		
+		
+		// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
+						var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
+						new field_typer_class("text-short")  )  ,
 
-				 ]
-				
-				var template_tags = ["html-body", "basic"]
-											// (source_id, name, tags, fields)
-				var template = new template_class("003","name_and_value_2", template_tags, fields)
-				
-				all_templates.push(template)
+					new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
+						new field_typer_class("text-short")  )  
 
-            });
-    </script>
+		 ]
+		
+		var template_tags = ["html-body", "basic"]
+									// (source_id, name, tags, fields)
+		var template = new template_class("003","name_and_value_2", template_tags, fields)
+		
+		all_templates.push(template)
+
+	});
+</script>
+
     
-    
-    
+        
     
 <script>
-        $( document ).ready(function() {
+	$( document ).ready(function() {
 
 
 // 			for (var i = 0; i < all_templates.length; i++) {
 // 				$(document.body).append(all_templates[i].list_template(i))
 // 			}
 
-                        
-                        
-                        
-                        // vor den patterns-deklarationen ?
-                        // nach den patterns-d.   ?
-                        
-                        
-                        // vor der template_class ?
-                        // nach
-                        
-                        
-                        // Eine eigene project_class ?
-                        
-                        
-                        
-                        project_manager.list_all_projects()
-                        
-                        
-                        
+		project_manager.list_all_projects()
+		
+		project_manager.runfirst()
 
-
-        });
+	});
 </script>
     
     
 </head>
 <body>
 
+<div id="start0"></div>
+<div id="start1"></div>
+<div id="start2"></div>
+<div id="main0"></div>
+<div id="main1"></div>
+<div id="main2"></div>
+<div id="end0"></div>
+<div id="end1"></div>
+<div id="end2"></div>
 
 </body>
 </html>
