@@ -120,11 +120,10 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 
 		// head script
 
-		function project_class (name) {
+		function project_class (name, html_id) {
 		
 			this.name = name
-			
-			this.now_main_html_id = "#main1"
+			this.now_main_html_id = html_id || "#main1"
 			
 			this.files = {}
 			
@@ -132,11 +131,15 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 		
 			project_class.prototype.run = function (hello) {
 			
-				hello = hello || "test AA"
-				
+				hello = hello || "test AA <br>"
 				$(this.now_main_html_id).append(hello)
-				
 				this.new_clipboard()
+				this.new_clipboard("clip2", "index.html")
+				this.new_clipboard("body1", "index.html")
+				this.new_clipboard("main", "my.css")
+				
+				
+				$(this.now_main_html_id).append(JSON.stringify(this.files))
 			
 			}
 			
@@ -145,10 +148,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 				if (! name) name = "clip1"
 				if (! file) file = "index.html"
 				
-				$(this.now_main_html_id).append(name + file + "<br>")
-				
-				
-				if (this.files[file]) {
+				if (typeof this.files[file] !== "undefined") {
 					this.files[file].clipboards.push(new clipboard_class(name))
 				}
 				else {
@@ -157,9 +157,6 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 					this.files[file].clipboards.push(new clipboard_class(name))
 				}
 				
-				$(this.now_main_html_id).append(this.files[file])
-				
-			
 			}
 		
 		function clipboard_class (name) {
@@ -721,7 +718,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 // 				$(document.body).append(all_templates[i].list_template(i))
 // 			}
 
-		project_manager.list_all_projects()
+		//project_manager.list_all_projects()
 		
 		project_manager.runfirst()
 
