@@ -438,7 +438,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
         
         
         // *global* //
-        global_templates = Object.create(null)
+        system_templates = Object.create(null)
         
                 
         function template_class(source_id, name, tags, fields) {   //  template types ??  ... solved by "tags" ?
@@ -454,19 +454,13 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 
 
         template_class.prototype.sourcedisplay = function(){
-                var a = "<div class='raw_template'>"
-                var b = "</div>"
-                return  a + global_templates["zerotemplate"]({ zero : this.source}) + b
-
+                return  system_templates["sourcedisplay"]({ template : this.source})
         }
         
         
         template_class.prototype.list_template = function(more){
-
                 var o = {   index : more ,  name : this.name ,  tags : this.tags.join() , template : this.source        }
-                
-                return global_templates["list_template"](o)
-
+                return system_templates["list_template"](o)
         }
         
         
@@ -521,7 +515,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 	$( document ).ready(function() {
 		
 		// *global* //
-		global_templates["zerotemplate"] = Handlebars.compile(document.getElementById("zero").innerHTML)
+		system_templates["zerotemplate"] = Handlebars.compile(document.getElementById("zero").innerHTML)
 		
 		var template_tags = ["system"]
 		var fields = [{}]
@@ -537,7 +531,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 	$( document ).ready(function() {
 		
 		// *global* //
-		global_templates["zerotemplate_0"] = Handlebars.compile(document.getElementById("zero_unescaped").innerHTML)
+		system_templates["zerotemplate_0"] = Handlebars.compile(document.getElementById("zero_unescaped").innerHTML)
 		
 		var template_tags = ["system"]
 		var fields = [{}]
@@ -554,7 +548,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 	$( document ).ready(function() {
 		
 		// *global* //
-		global_templates["list_project"] = Handlebars.compile(document.getElementById("system_list_project").innerHTML)
+		system_templates["list_project"] = Handlebars.compile(document.getElementById("system_list_project").innerHTML)
 		
 		var template_tags = ["system", "master-project"]
 		var fields = [{}]
@@ -562,6 +556,28 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 		all_templates.push(template)
 	})
 </script>
+
+
+
+<script id="system_sourcedisplay" type="text/x-handlebars-template">
+<div class='raw_template'>{{template}}</div>
+</script>
+<script>
+	$( document ).ready(function() {
+		
+		// *global* //
+		system_templates["sourcedisplay"] = Handlebars.compile(document.getElementById("system_sourcedisplay").innerHTML)
+		
+		var template_tags = ["system", "master-project"]
+		var fields = [{}]
+		var template = new template_class("system_sourcedisplay","template_sourcedisplay", template_tags, fields)
+		all_templates.push(template)
+	})
+</script>
+
+
+
+
 
 
     
@@ -583,7 +599,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 		
 		// *global* //
 		
-		global_templates["list_template"] = Handlebars.compile(document.getElementById("system_list_template").innerHTML)
+		system_templates["list_template"] = Handlebars.compile(document.getElementById("system_list_template").innerHTML)
 		
 		var template_tags = ["system"]
 		var fields = [{},{},{},{}]
