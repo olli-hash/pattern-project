@@ -723,25 +723,71 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 	});
 </script>
 
-    
-        
+<!--
+<script id="" type="text/x-handlebars-template"></script>
+
+
+<script>
+	$( document ).ready(function() {
+		
+		
+	});
+</script>
+-->
+
+
+<script id="html_basic_form_example1" type="text/x-handlebars-template"><form>
+	<label for="fname">First name:</label><br>
+	<input type="text" id="fname" name="fname"><br>
+	<label for="lname">Last name:</label><br>
+	<input type="text" id="lname" name="lname">
+</form></script>
+
+
+<script>
+	$( document ).ready(function() {
+		// *global* //
+		
+		var template_tags = ["html-basic", "form" ]
+		var fields = []
+		var template = new template_class("html_basic_form_example1","html_basic_form_example1", template_tags, fields)
+		all_templates.push(template)
+		
+	});
+</script>
+
+
+<script id="html_basic_form_example2" type="text/x-handlebars-template"> <form>
+	<input type="radio" id="male" name="gender" value="male">
+	<label for="male">Male</label><br>
+	<input type="radio" id="female" name="gender" value="female">
+	<label for="female">Female</label><br>
+	<input type="radio" id="other" name="gender" value="other">
+	<label for="other">Other</label>
+</form></script>
+
+
+<script>
+	$( document ).ready(function() {
+		// *global* //
+		
+		var template_tags = ["html-basic", "form" ]
+		var fields = []
+		var template = new template_class("html_basic_form_example2","html_basic_form_example2", template_tags, fields)
+		all_templates.push(template)	
+		
+	});
+</script>
+
+
+
+
     
 <script>
 	$( document ).ready(function() {
-
-
-// 			for (var i = 0; i < all_templates.length; i++) {
-// 				$(document.body).append(all_templates[i].list_template(i))
-// 			}
-
-		//project_manager.list_all_projects()
-		
 		project_manager.runfirst()
-
 	});
 </script>
-    
-    
 </head>
 <body>
 
