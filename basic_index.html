@@ -511,6 +511,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
     
 <!-- Kann man hier auch src="..." benutzen?  -->
 <script id="zero" type="text/x-handlebars-template">{{zero}}</script>
+
 <script>
 	$( document ).ready(function() {
 		
@@ -527,6 +528,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
     
 
 <script id="zero_unescaped" type="text/x-handlebars-template">{{{zero}}}</script>
+
 <script>
 	$( document ).ready(function() {
 		
@@ -544,6 +546,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 <script id="system_list_project" type="text/x-handlebars-template">
 {{{zero}}}
 </script>
+
 <script>
 	$( document ).ready(function() {
 		
@@ -562,6 +565,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 <script id="system_sourcedisplay" type="text/x-handlebars-template">
 <div class='raw_template'>{{template}}</div>
 </script>
+
 <script>
 	$( document ).ready(function() {
 		
@@ -574,10 +578,6 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 		all_templates.push(template)
 	})
 </script>
-
-
-
-
 
 
     
@@ -594,6 +594,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 <br style='clear:all'>
 <div class='raw_template'>{{template}}</div>
 </script>
+
 <script>
 	$( document ).ready(function() {
 		
@@ -617,6 +618,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 <script id="aaa" type="text/x-handlebars-template">
 <title>{{title}}</title>
 </script>
+
 <script>
 	$( document ).ready(function() {
 	
@@ -643,11 +645,9 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 <script id="001" type="text/x-handlebars-template">
 <div><span>{{name}}</span><span>{{value}}</span></div>
 </script>
-<script>                         
 
+<script>                         
 	$( document ).ready(function() {
-		
-		
 		// deprecated
 		var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
 						new field_typer_class("text-short")  )  ,
@@ -656,11 +656,8 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 						new field_typer_class("text-short")  )  
 
 		 ]
-		
 		var template_tags = ["html-body", "basic"]
-									// (source_id, name, tags, fields)
 		var template = new template_class("001","name_and_value", template_tags, fields)
-		
 		all_templates.push(template)
 	});
 </script>
@@ -670,62 +667,46 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 
 
 <script id="002" type="text/x-handlebars-template">
-<div class="name_value"><span class="{{css_class1}}">{{name}}</span><span class="{{css_class2}}">{{value}}</span></div>
+<div class="name_value"><span class="{{class1}}">{{name}}</span><span class="{{class2}}">{{value}}</span></div>
 </script>
-<script>                         
 
+<script>                         
 	$( document ).ready(function() {
-		
-		
 		// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
 						var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
 						new field_typer_class("text-short")  )  ,
-
 					new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
 						new field_typer_class("text-short")  )  
-
 		 ]
-		
 		var template_tags = ["html-body", "basic"]
-									// (source_id, name, tags, fields)
 		var template = new template_class("002","name_and_value_1", template_tags, fields)
-		
 		all_templates.push(template)
-
 	});
 </script>
     
     
 
 <script id="003" type="text/x-handlebars-template">
-<div class="{{css_class1}}"><span class="{{css_class2}}">{{name}}</span><span class="{{css_class3}}">{{value}}</span></div>
+<div class="{{class1}}"><span class="{{class1_1}}">{{name}}</span><span class="{{class1_2}}">{{value}}</span></div>
 </script>
+
 <script>                         
-
 	$( document ).ready(function() {
-		
-		
-		// (doc_id, html_parent, logical_parent, name, init_value, alternative_values, field_relations, type_o )
-						var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
-						new field_typer_class("text-short")  )  ,
+		var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [], 
+				new field_typer_class("text-short")  )  ,
 
-					new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
-						new field_typer_class("text-short")  )  
-
-		 ]
+			new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [], 
+				new field_typer_class("text-short")  )  
+		]
 		
 		var template_tags = ["html-body", "basic"]
-									// (source_id, name, tags, fields)
 		var template = new template_class("003","name_and_value_2", template_tags, fields)
-		
 		all_templates.push(template)
-
 	});
 </script>
 
 <!--
 <script id="" type="text/x-handlebars-template"></script>
-
 
 <script>
 	$( document ).ready(function() {
@@ -736,28 +717,25 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 -->
 
 
-<script id="html_basic_form_example1" type="text/x-handlebars-template"><form>
+<script id="form_example1" type="text/x-handlebars-template"><form>
 	<label for="fname">First name:</label><br>
 	<input type="text" id="fname" name="fname"><br>
 	<label for="lname">Last name:</label><br>
 	<input type="text" id="lname" name="lname">
 </form></script>
 
-
 <script>
 	$( document ).ready(function() {
-		// *global* //
-		
-		var template_tags = ["html-basic", "form" ]
+		var template_tags = ["html-basic", "form", "example" ]
 		var fields = []
-		var template = new template_class("html_basic_form_example1","html_basic_form_example1", template_tags, fields)
+		var template = new template_class("form_example1","form_example1", template_tags, fields)
 		all_templates.push(template)
-		
 	});
 </script>
 
 
-<script id="html_basic_form_example2" type="text/x-handlebars-template"> <form>
+
+<script id="form_example2" type="text/x-handlebars-template"><form>
 	<input type="radio" id="male" name="gender" value="male">
 	<label for="male">Male</label><br>
 	<input type="radio" id="female" name="gender" value="female">
@@ -766,16 +744,12 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 	<label for="other">Other</label>
 </form></script>
 
-
 <script>
 	$( document ).ready(function() {
-		// *global* //
-		
-		var template_tags = ["html-basic", "form" ]
+		var template_tags = ["html-basic", "form", "example" ]
 		var fields = []
-		var template = new template_class("html_basic_form_example2","html_basic_form_example2", template_tags, fields)
+		var template = new template_class("form_example2","form_example2", template_tags, fields)
 		all_templates.push(template)	
-		
 	});
 </script>
 
