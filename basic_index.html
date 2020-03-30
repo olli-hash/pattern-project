@@ -452,21 +452,25 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
             this.name = name
             this.tags = tags
             this.fields = fields
+			this.weblinks = []
 
         }
 
 
         template_class.prototype.sourcedisplay = function(){
-                return  system_templates["sourcedisplay"]({ template : this.source})
+			return system_templates["sourcedisplay"]({ template : this.source})
         }
         
         
         template_class.prototype.list_template = function(more){
-                var o = {   index : more ,  name : this.name ,  tags : this.tags.join() , template : this.source        }
-                return system_templates["list_template"](o)
+			var o = {   index : more ,  name : this.name ,  tags : this.tags.join() , template : this.source        }
+			return system_templates["list_template"](o)
         }
         
         
+        template_class.prototype.addURL = function(url){
+			this.weblinks.push(url)
+        }
         
         
         
@@ -732,6 +736,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 		var template_tags = ["html-basic", "form", "example" ]
 		var fields = []
 		var template = new template_class("form_example1","form_example1", template_tags, fields)
+		template.addURL("https://www.w3schools.com/html/html_forms.asp")
 		all_templates.push(template)
 	});
 </script>
@@ -752,6 +757,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 		var template_tags = ["html-basic", "form", "example" ]
 		var fields = []
 		var template = new template_class("form_example2","form_example2", template_tags, fields)
+		template.addURL("https://www.w3schools.com/html/html_forms.asp")
 		all_templates.push(template)	
 	});
 </script>
@@ -769,12 +775,20 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 -->
 
 
-<script id="" type="text/x-handlebars-template"></script>
+<script id="form_example3" type="text/x-handlebars-template"><select name="cars" size="4" multiple>
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="fiat">Fiat</option>
+  <option value="audi">Audi</option>
+</select></script>
 
 <script>
 	$( document ).ready(function() {
-		
-		
+		var template_tags = ["html-basic", "form", "example" ]
+		var fields = []
+		var template = new template_class("form_example3","form_example3", template_tags, fields)
+		template.addURL("https://www.w3schools.com/html/html_form_elements.asp")
+		all_templates.push(template)	
 	});
 </script>
 
