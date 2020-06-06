@@ -134,15 +134,21 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 		
 			project_class.prototype.run = function (hello) {
 			
-				hello = hello || "test AA <br>"
+				var hello = hello || this.name + "__AA <br>"
 				$(this.now_main_html_id).append(hello)
 				this.new_clipboard()
 				this.new_clipboard("clip2", "index.html")
 				this.new_clipboard("body1", "index.html")
 				this.new_clipboard("main", "my.css")
-				
-				
 				$(this.now_main_html_id).append(JSON.stringify(this.files))
+				
+				
+				for (var i = 0; i < all_templates.length ; i++) {
+				
+					$(this.now_main_html_id).append(all_templates[i].list_template_head())
+				
+				
+				}
 			
 			}
 			
@@ -462,11 +468,19 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
         }
         
         
-        template_class.prototype.list_template = function(more){
-			var o = {   index : more ,  name : this.name ,  tags : this.tags.join() , template : this.source        }
+        template_class.prototype.list_template = function(index){
+			var o = {   index : index ,  name : this.name ,  tags : this.tags.join(", ") , template : this.source        }
 			return system_templates["list_template"](o)
         }
         
+		template_class.prototype.list_template_head = function(index){
+			var o = {   index : index ,  name : this.name ,  tags : this.tags.join(", ")     }
+			return system_templates["list_template_head"](o)
+        }
+        
+		
+		
+		
         
         template_class.prototype.addURL = function(url){
 			this.weblinks.push(url)
@@ -515,7 +529,10 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
         
     </script>
 
-    
+
+
+<!-- ================================================================================================== -->
+   
 <!-- Kann man hier auch src="..." benutzen?  -->
 <script id="zero" type="text/x-handlebars-template">{{zero}}</script>
 
@@ -533,6 +550,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 </script>
 
     
+<!-- ================================================================================================== -->
 
 <script id="zero_unescaped" type="text/x-handlebars-template">{{{zero}}}</script>
 
@@ -549,6 +567,9 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 	})
 </script>
 
+
+
+<!-- ================================================================================================== -->
 
 <script id="system_list_project" type="text/x-handlebars-template">
 {{{zero}}}
@@ -568,6 +589,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 </script>
 
 
+<!-- ================================================================================================== -->
 
 <script id="system_sourcedisplay" type="text/x-handlebars-template">
 <div class='raw_template'>{{template}}</div>
@@ -587,6 +609,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 </script>
 
 
+<!-- ================================================================================================== -->
     
 <script id="system_list_template" type="text/x-handlebars-template">
 <div class='float_left template_heading'>
@@ -617,10 +640,41 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 </script>
 
     
+<!-- ================================================================================================== -->
+    
+<script id="system_list_template_head" type="text/x-handlebars-template">
+<div class='float_left template_heading'>
+[{{index}}]
+</div>
+<div class='float_left template_heading bold'>
+{{name}}
+</div>
+<div class='float_left template_heading'>
+{{tags}}
+</div>
+<br style='clear:all'>
+</script>
+
+<script>
+	$( document ).ready(function() {
+		
+		// *global* //
+		
+		system_templates["list_template_head"] = Handlebars.compile(document.getElementById("system_list_template_head").innerHTML)
+		
+		var template_tags = ["system"]
+		var fields = [{},{},{},{}]
+		var template = new template_class("system_list_template_head","list_template_head", template_tags, fields)
+		all_templates.push(template)
+	})
+</script>
+
+    
 
 
 
 
+<!-- ================================================================================================== -->
     
 <script id="aaa" type="text/x-handlebars-template">
 <title>{{title}}</title>
@@ -648,6 +702,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
     
     
     
+<!-- ================================================================================================== -->
     
 <script id="001" type="text/x-handlebars-template">
 <div><span>{{name}}</span><span>{{value}}</span></div>
@@ -672,6 +727,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
     
 
 
+<!-- ================================================================================================== -->
 
 <script id="002" type="text/x-handlebars-template">
 <div class="name_value"><span class="{{class1}}">{{name}}</span><span class="{{class2}}">{{value}}</span></div>
@@ -692,6 +748,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 </script>
     
     
+<!-- ================================================================================================== -->
 
 <script id="003" type="text/x-handlebars-template">
 <div class="{{class1}}"><span class="{{class1_1}}">{{name}}</span><span class="{{class1_2}}">{{value}}</span></div>
@@ -712,6 +769,8 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 	});
 </script>
 
+<!-- ================================================================================================== -->
+
 <!--
 <script id="" type="text/x-handlebars-template"></script>
 
@@ -723,6 +782,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 </script>
 -->
 
+<!-- ================================================================================================== -->
 
 <script id="form_example1" type="text/x-handlebars-template"><form>
 	<label for="fname">First name:</label><br>
@@ -742,6 +802,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 </script>
 
 
+<!-- ================================================================================================== -->
 
 <script id="form_example2" type="text/x-handlebars-template"><form>
 	<input type="radio" id="male" name="gender" value="male">
@@ -774,6 +835,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 </script>
 -->
 
+<!-- ================================================================================================== -->
 
 <script id="form_example3" type="text/x-handlebars-template"><select name="cars" size="4" multiple>
   <option value="volvo">Volvo</option>
@@ -793,19 +855,130 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 </script>
 
 
+<!-- ================================================================================================== -->
 
-<script id="" type="text/x-handlebars-template"></script>
+<script id="form_example4" type="text/x-handlebars-template"><textarea name="message" rows="10" cols="30">
+The cat was playing in the garden.
+</textarea></script>
 
 <script>
 	$( document ).ready(function() {
-		
-		
+		var template_tags = ["html-basic", "form", "example" ]
+		var fields = []
+		var template = new template_class("form_example4","form_example4", template_tags, fields)
+		template.addURL("https://www.w3schools.com/html/html_form_elements.asp")
+		all_templates.push(template)	
+	});
+</script>
+
+<!-- ================================================================================================== -->
+
+<script id="w3_colors_example1" type="text/x-handlebars-template"><div class="w3-row w3-large">
+<div class="w3-third w3-container w3-black">
+<h2>On Black</h2>
+<p class="w3-text-red">w3-text-red</p>
+<p class="w3-text-pink">w3-text-pink</p>
+<p class="w3-text-purple">w3-text-purple</p>
+<p class="w3-text-deep-purple">w3-text-deep-purple</p>
+<p class="w3-text-indigo">w3-text-indigo</p>
+<p class="w3-text-blue">w3-text-blue</p>
+<p class="w3-text-light-blue">w3-text-light-blue</p>
+<p class="w3-text-cyan">w3-text-cyan</p>
+<p class="w3-text-aqua">w3-text-aqua</p>
+<p class="w3-text-teal">w3-text-teal</p>
+<p class="w3-text-green">w3-text-green</p>
+<p class="w3-text-light-green">w3-text-light-green</p>
+<p class="w3-text-lime">w3-text-lime</p>
+<p class="w3-text-sand">w3-text-sand</p>
+<p class="w3-text-khaki">w3-text-khaki</p>
+<p class="w3-text-yellow">w3-text-yellow</p>
+<p class="w3-text-amber">w3-text-amber</p>
+<p class="w3-text-orange">w3-text-orange</p>
+<p class="w3-text-deep-orange">w3-text-deep-orange</p>
+<p class="w3-text-blue-gray">w3-text-blue-gray</p>
+<p class="w3-text-brown">w3-text-brown</p>
+<p class="w3-text-light-gray">w3-text-light-gray</p>
+<p class="w3-text-gray">w3-text-gray</p>
+<p class="w3-text-dark-gray">w3-text-dark-gray</p>
+<p class="w3-text-black">w3-text-black</p>
+<p class="w3-text-white">w3-text-white</p>
+</div>
+<div class="w3-third w3-container w3-gray">
+<h2>On Gray</h2>
+<p class="w3-text-red">w3-text-red</p>
+<p class="w3-text-pink">w3-text-pink</p>
+<p class="w3-text-purple">w3-text-purple</p>
+<p class="w3-text-deep-purple">w3-text-deep-purple</p>
+<p class="w3-text-indigo">w3-text-indigo</p>
+<p class="w3-text-blue">w3-text-blue</p>
+<p class="w3-text-light-blue">w3-text-light-blue</p>
+<p class="w3-text-cyan">w3-text-cyan</p>
+<p class="w3-text-aqua">w3-text-aqua</p>
+<p class="w3-text-teal">w3-text-teal</p>
+<p class="w3-text-green">w3-text-green</p>
+<p class="w3-text-light-green">w3-text-light-green</p>
+<p class="w3-text-lime">w3-text-lime</p>
+<p class="w3-text-sand">w3-text-sand</p>
+<p class="w3-text-khaki">w3-text-khaki</p>
+<p class="w3-text-yellow">w3-text-yellow</p>
+<p class="w3-text-amber">w3-text-amber</p>
+<p class="w3-text-orange">w3-text-orange</p>
+<p class="w3-text-deep-orange">w3-text-deep-orange</p>
+<p class="w3-text-blue-gray">w3-text-blue-gray</p>
+<p class="w3-text-brown">w3-text-brown</p>
+<p class="w3-text-light-gray">w3-text-light-gray</p>
+<p class="w3-text-gray">w3-text-gray</p>
+<p class="w3-text-dark-gray">w3-text-dark-gray</p>
+<p class="w3-text-black">w3-text-black</p>
+<p class="w3-text-white">w3-text-white</p>
+</div>
+<div class="w3-third w3-container">
+<h2>On White</h2>
+<p class="w3-text-red">w3-text-red</p>
+<p class="w3-text-pink">w3-text-pink</p>
+<p class="w3-text-purple">w3-text-purple</p>
+<p class="w3-text-deep-purple">w3-text-deep-purple</p>
+<p class="w3-text-indigo">w3-text-indigo</p>
+<p class="w3-text-blue">w3-text-blue</p>
+<p class="w3-text-light-blue">w3-text-light-blue</p>
+<p class="w3-text-cyan">w3-text-cyan</p>
+<p class="w3-text-aqua">w3-text-aqua</p>
+<p class="w3-text-teal">w3-text-teal</p>
+<p class="w3-text-green">w3-text-green</p>
+<p class="w3-text-light-green">w3-text-light-green</p>
+<p class="w3-text-lime">w3-text-lime</p>
+<p class="w3-text-sand">w3-text-sand</p>
+<p class="w3-text-khaki">w3-text-khaki</p>
+<p class="w3-text-yellow">w3-text-yellow</p>
+<p class="w3-text-amber">w3-text-amber</p>
+<p class="w3-text-orange">w3-text-orange</p>
+<p class="w3-text-deep-orange">w3-text-deep-orange</p>
+<p class="w3-text-blue-gray">w3-text-blue-gray</p>
+<p class="w3-text-brown">w3-text-brown</p>
+<p class="w3-text-light-gray">w3-text-light-gray</p>
+<p class="w3-text-gray">w3-text-gray</p>
+<p class="w3-text-dark-gray">w3-text-dark-gray</p>
+<p class="w3-text-black">w3-text-black</p>
+<p class="w3-text-white">w3-text-white</p>
+</div>
+</div></script>
+
+<script>
+	$( document ).ready(function() {
+		var template_tags = ["html", "w3", "css-framework" ,"example" ]
+		var fields = []
+		var template = new template_class("w3_colors_example1","w3_colors_example1", template_tags, fields)
+		template.addURL("https://www.w3schools.com/colors/colors_w3css.asp")
+		all_templates.push(template)	
 	});
 </script>
 
 
 
 
+<!-- ================================================================================================== -->
+<!-- ================================================================================================== -->
+<!-- ================================================================================================== -->
     
 <script>
 	$( document ).ready(function() {
