@@ -1,0 +1,67 @@
+
+
+
+*Templates*
+
+
+
+
+
+*Program Flow*
+
+
+    549:    var template = new template_class("zero_unescaped","zero2", template_tags, fields)
+
+    549:    var template = new template_class (htmlid, name, template_tags, fields)
+
+
+    119:    project_class.prototype.run = function (hello) {   }
+
+        >>> HTML-DOC-CHANGE
+
+
+
+
+*HTML-Document-Points*
+
+
+
+
+
+
+
+*Globals*
+
+    l()
+
+
+    all_templates[]
+
+    all_templates[n].    //  = template_class
+        source
+        template
+        name
+        tags
+        fields
+        weblinks
+        sourcedisplay()
+        list_template()
+        list_template_head()
+
+
+
+    project_manager.
+        projects[]
+
+        list_all_projects()
+        runfirst()                                            **Starting Point**
+
+
+    p1.                 //  = project_class
+        name
+        now_main_html_id
+        files.
+        run()                                                      **2nd Point**
+        new_clipboard()
+
+    all_templates[i].list_template_head()

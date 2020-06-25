@@ -17,7 +17,7 @@ list_template()
 
 
 
-
+all_templates[i].list_template_head()
 
 
 
@@ -31,7 +31,7 @@ list_template()
 ??? Templating of JS
 - Inserting HTML-JS-Hooks
 
-												global generator_context 
+												global generator_context
 			   									global generator_context    pure HTML / Hbs-HTML
 
 # Organisation Of Templates
@@ -78,13 +78,3 @@ Templates are visible text on the screen. The (template)language is "handlebars"
 
 
 % Window Handling
-
-
-
-
-
-
-
-
-
-
