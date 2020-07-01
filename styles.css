@@ -7,6 +7,10 @@ div, p {
     color: #333333;
     margin: 3px;	}
 
+a {
+    color: #2196f3;
+}
+
 form {
     border: 1px solid #444;
 }
@@ -25,17 +29,11 @@ form {
     border: 1px solid black; border-radius: 5px;
 }
 
-
 .w3-black:hover, .w3-gray:hover, .w3-white:hover {
 
     transition: 2s;
     font-size: xx-large;
-
-
-
 }
-
-
 
 .w3-third {
     width: 30%;
@@ -46,6 +44,7 @@ select:hover {
     width: 300px;
 }
 .code1 {
+    white-space: pre;
     margin-left: 40px;
     margin-bottom: 21px;
     border: 1px solid #555;
@@ -81,3 +80,7 @@ select:hover {
 .float_left {  float:left;     }
 .template_heading {       }
 .bold { font-weight: bold;    }
+.template_tags {
+    font-family: 'Merriweather', serif;
+    font-style: italic;
+}

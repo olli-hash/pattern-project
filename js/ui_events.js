@@ -27,7 +27,16 @@ function call_ui() {
 
     })
 
+    $("p").dblclick(function(){
+      $(this).hide();
+    });
 
+
+    $( window ).on( "load", function() {
+        console.log("--- page has been loaded ---")
+
+            // https://learn.jquery.com/using-jquery-core/document-ready/
+    })
 
 
 }
