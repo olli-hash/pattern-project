@@ -1,10 +1,68 @@
 
 body  {
     background-color: #334499;
-
     padding: 120px;  }
 
-div, p { color: #333333; margin: 3px;	}
+div, p {
+    color: #333333;
+    margin: 3px;	}
+
+form {
+    border: 1px solid #444;
+}
+
+.w3-black, .w3-gray, .w3-white {
+    font-weight: bold;
+    position: relative;
+    transition: 2s;
+}
+
+.w3-black .select1, .w3-gray .select1 {
+    border: 1px solid white; border-radius: 5px;
+}
+
+.w3-white .select1 {
+    border: 1px solid black; border-radius: 5px;
+}
+
+
+.w3-black:hover, .w3-gray:hover, .w3-white:hover {
+
+    transition: 2s;
+    font-size: xx-large;
+
+
+
+}
+
+
+
+.w3-third {
+    width: 30%;
+}
+
+select:hover {
+    transition: width 3s;
+    width: 300px;
+}
+.code1 {
+    margin-left: 40px;
+    margin-bottom: 21px;
+    border: 1px solid #555;
+    background-color: white;
+    padding: 15px;
+    border-radius: 7px;      }
+
+.code1_output {
+    font-family: Roboto;
+    font-family: 'Montserrat', sans-serif;
+    color: black;
+    margin-left: 40px;
+    border: 1px solid #222;
+    border-radius: 11px;
+    padding: 15px;
+    background-color: white;
+}
 
 #start0, #start1, #start2 { color: #333333; margin: 3px;  padding: 5px;  background-color: #eee;     }
 #main0, #main1, #main2 { color: #333333; margin: 3px;  padding: 5px;  background-color: #eee;     }
@@ -12,6 +70,7 @@ div, p { color: #333333; margin: 3px;	}
 
 #start0, #start1, #start2, #main0, #main1, #main2, #end0, #end1, #end2  {
     display: none;
+    position: relative;
     margin:10px 0px; padding: 40px; border: 1px solid #333;  }
 
 #container1 {        box-shadow: 1px 1px 30px 30px #fff;    background-color: #eee;       }

@@ -1,5 +1,9 @@
 
 
+Atom:    STRG + d  !!!
+
+
+
 
 *Templates*
 
@@ -32,6 +36,11 @@
 
 *Globals*
 
+
+    system_templates = Object.create(null)
+    system_templates.
+
+
     l()
 
 
@@ -44,9 +53,9 @@
         tags
         fields
         weblinks
-        sourcedisplay()
-        list_template()
-        list_template_head()
+        sourcedisplay()     //   --> system_templates.__________ ?
+        list_template()     //   --> system_templates.__________ ?
+        list_template_head()     //   --> system_templates.__________ ?
 
 
 

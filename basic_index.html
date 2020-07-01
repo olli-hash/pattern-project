@@ -5,7 +5,10 @@
     <title>hi, pattern project -- basic_index.html</title>
 
     <link href="https://fonts.googleapis.com/css?family=Butterfly+Kids|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <link rel="stylesheet" href="styles.css">
     <style>
 
@@ -25,9 +28,21 @@
     <script type = "text/javascript"
         src = "handlebars-v4.5.3.js">
     </script>
+
     <script>
         var l = console.log.bind(console)	//   *global*
     </script>
+
+    <script type = "text/javascript"
+        src = "js/ui_events.js">
+    </script>
+
+
+
+
+
+
+
 <!--   ..............................................................................................   -->
     <script>
 // --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- --------- ---------
@@ -446,6 +461,7 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
             this.tags = tags
             this.fields = fields
 			this.weblinks = []
+            this.ex1 = { template_name: this.name }
 
         }
 
@@ -461,7 +477,10 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
         }
 
 		template_class.prototype.list_template_head = function(index){
-			var o = {   index : index ,  name : this.name ,  tags : this.tags.join(", ")     }
+			var o = {   index : index ,  name : this.name ,  tags : this.tags.join(", ") , links : this.weblinks ,
+                code1 : this.source ,
+                code1_output : this.template(this.ex1)
+            }
 			return system_templates["list_template_head"](o)
         }
 
@@ -639,7 +658,22 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 <div class='float_left template_heading'>
 {{tags}}
 </div>
+<div class='float_left template_heading'>
+    {{#each links}}
+        <a href="{{this}}">[link]</a>
+    {{/each}}
+</div>
+
 <br style='clear:both'>
+<div class="code1">
+{{code1}}
+</div>
+<div class="code1_output">
+{{{code1_output}}}
+<br>
+</div>
+
+
 </script>
 
 <script>
@@ -844,9 +878,28 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 
 <!-- ================================================================================================== -->
 
-<script id="form_example4" type="text/x-handlebars-template"><textarea name="message" rows="10" cols="30">
+<script id="form_example4" type="text/x-handlebars-template"><form><textarea name="message" rows="10" cols="30">
 The cat was playing in the garden.
-</textarea></script>
+
+form attributes:
+
+
+
+______Event-linking______
+
+ - click, mouseover, mousein,
+
+
+
+
+
+</textarea>
+<br>
+<br>
+Send this stuff!
+<br>
+<button>send</button>
+</form></script>
 
 <script>
 	$( document ).ready(function() {
@@ -919,7 +972,7 @@ The cat was playing in the garden.
 <p class="w3-text-black">w3-text-black</p>
 <p class="w3-text-white">w3-text-white</p>
 </div>
-<div class="w3-third w3-container">
+<div class="w3-third w3-container w3-white">
 <h2>On White</h2>
 <p class="w3-text-red">w3-text-red</p>
 <p class="w3-text-pink">w3-text-pink</p>
@@ -956,6 +1009,7 @@ The cat was playing in the garden.
 		var fields = []
 		var template = new template_class("w3_colors_example1","w3_colors_example1", template_tags, fields)
 		template.addURL("https://www.w3schools.com/colors/colors_w3css.asp")
+        template.addURL("https://www.w3schools.com/colors/colors_compound.asp")
 		all_templates.push(template)
 	});
 </script>
@@ -979,15 +1033,32 @@ The cat was playing in the garden.
 
 </script>
 
+<!-- ================================================================================================== -->
+
+<script id="pattern111" type="text/x-handlebars-template"><div>this is pattern111</div></script>
+
+<script>
+	$( document ).ready(function() {
+		var template_tags = ["experiment" ]
+		var fields = []
+		var template = new template_class("pattern111","pattern111", template_tags, fields)
+		template.addURL("https://handlebarsjs.com/guide/expressions.html")
+		all_templates.push(template)
+	});
+
+</script>
+
 
 <!-- ================================================================================================== -->
-<!-- ================================================================================================== -->
+<!--
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing ================================================================================================== -->
 <!-- ================================================================================================== -->
 
 <script>
 	$( document ).ready(function() {
         project_manager.list_all_projects()
         project_manager.runfirst()
+        call_ui()
 	});
 </script>
 </head>
