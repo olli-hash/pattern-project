@@ -31,6 +31,21 @@ function call_ui() {
       $(this).hide();
     });
 
+    $(".code1").click(function(){
+        $(this).slideUp()
+    })
+
+
+    $(".code1_output").click(function(){
+        $(this).slideUp()
+    })
+
+
+    $(".upper_bar").click(function(){
+        $(this).slideDown()
+    })
+
+
 
     $( window ).on( "load", function() {
         console.log("--- page has been loaded ---")

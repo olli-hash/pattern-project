@@ -26,7 +26,7 @@ Atom:    STRG + d  !!!
 
 
 
-*HTML-Document-Points*
+*HTML-Document-Points AND CSS-Definitions*
 
 
 

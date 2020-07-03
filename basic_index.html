@@ -650,19 +650,21 @@ function field_deskriptor_class (name, init_value, formal_type, content_type, te
 <!-- ================================================================================================== -->
 
 <script id="system_list_template_head" type="text/x-handlebars-template">
-<div class='float_left template_heading'>
-[{{index}}]
-</div>
-<div class='float_left template_heading bold'>
-{{name}}
-</div>
-<div class='float_left template_heading template_tags'>
-{{tags}}
-</div>
-<div class='float_left template_heading'>
-    {{#each links}}
-        <a href="{{this}}">[link]</a>
-    {{/each}}
+<div class="upper_bar">
+    <div class='float_left template_heading'>
+    [{{index}}]
+    </div>
+    <div class='float_left template_heading bold'>
+    {{name}}
+    </div>
+    <div class='float_left template_heading template_tags'>
+    {{tags}}
+    </div>
+    <div class='float_left template_heading'>
+        {{#each links}}
+            <a href="{{this}}">[link]</a>
+        {{/each}}
+    </div>
 </div>
 
 <br style='clear:both'>
@@ -1011,6 +1013,7 @@ Send this stuff!
 		var template = new template_class("w3_colors_example1","w3_colors_example1", template_tags, fields)
 		template.addURL("https://www.w3schools.com/colors/colors_w3css.asp")
         template.addURL("https://www.w3schools.com/colors/colors_compound.asp")
+        template.addURL("https://www.w3schools.com/cssref/pr_font_font-size.asp")
 		all_templates.push(template)
 	});
 </script>
