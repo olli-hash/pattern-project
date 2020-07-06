@@ -1,13 +1,15 @@
 
 
-Atom:    STRG + d  !!!
+Die Darstellung komplexer Daten  --> Handlebars, Templates, Untertemplates, dynamisch-intelligent, ...
 
+
+2do: Alle Template-Logic außerhalb, in eigener .js-Datei notieren!
 
 
 
 *Templates*
 
-
+poker_spot_seed1
 
 
 
@@ -74,3 +76,6 @@ Atom:    STRG + d  !!!
         new_clipboard()
 
     all_templates[i].list_template_head()
+
+
+Atom:    STRG + d  !!!
