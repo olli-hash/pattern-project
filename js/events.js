@@ -39,28 +39,38 @@ function call_ui() {
         $(this).slideUp()
     })
 
-    $(".example_contextobject").click(function(){
-        $(this).slideUp()
-    })
 
-    $(".code1_output").click(function(){
-        $(this).slideUp()
-    })
+    // $(".code1_output").click(function(){
+    //     $(this).slideUp()
+    // })
 
 
     $(".upper_bar").click(function(){
         $(this).parent().children(".code1").slideDown()
         $(this).parent().children(".code1_output").slideDown()
-        $(this).parent().children(".example_contextobject").slideDown()
-})
+    })
 
 
+
+
+    // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+
+    // Window-Events
 
     $( window ).on( "load", function() {
         console.log("--- page has been loaded ---")
 
             // https://learn.jquery.com/using-jquery-core/document-ready/
     })
+
+
+    
+
+
+
+
+
 
 
 }

@@ -26,16 +26,18 @@ h1.sshy {  position: absolute; display:hidden;   }
 
 h1.sshy:hover {  position: absolute; display:block;   }
 
-.example_contextobject {
 
-    border: 5px solid #673ab7; border-radius: 5px;
-    margin-left: 40px;
-    padding: 10px;
-
+.pos_abs {
+    position:absolute;
+    background-color: #white;
+    border: 1px solid black;
+    width: 20px;
+    height: 20px;
+    padding: 7px;
 }
 
-
 .code1 {
+    position:relative;
     white-space: pre;
     margin-left: 40px;
     margin-bottom: 21px;
@@ -44,13 +46,25 @@ h1.sshy:hover {  position: absolute; display:block;   }
     background-color: black;
     color: white;
     padding: 15px;
-    border-radius: 7px;      }
+    border-radius: 7px;
+}
+
+.example_contextobject {
+    position:relative;
+    white-space: pre;
+    border: 5px solid #673ab7; border-radius: 5px;
+    margin-left: 40px;
+    margin-bottom: 21px;
+    padding: 10px;
+}
 
 .code1_output {
+    position:relative;
     font-family: Roboto;
     font-family: 'Montserrat', sans-serif;
     color: black;
     margin-left: 40px;
+    margin-bottom: 21px;
     border: 1px solid #222;
     border-radius: 11px;
     padding: 15px;
@@ -91,6 +105,7 @@ select:hover {
 
 .show_template {
     margin: 12px 5px;
+    padding-bottom: 20px;
 }
 
 .show_template:hover {

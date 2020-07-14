@@ -313,7 +313,7 @@ system_templates = Object.create(null)
 
 		template_class.prototype.list_template_head = function(index){
 			var o = {   index : index ,  name : this.name ,  tags : this.tags.join(", ") , links : this.weblinks ,
-                example1 : JSON.stringify(this.ex1),
+                example1 : JSON.stringify(this.ex1, null, 10),
                 code1 : this.source ,
                 code1_output : this.template(this.ex1)
             }

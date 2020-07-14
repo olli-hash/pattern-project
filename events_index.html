@@ -1,0 +1,385 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>hi, pattern project -- events_index.html</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Butterfly+Kids|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+    <link rel="stylesheet" href="styles.css">
+    <style>
+
+    </style>
+
+    <script type = "text/javascript"
+        src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+    </script>
+
+    <script type = "text/javascript"
+        src = "js/handlebars-v4.5.3.js">
+    </script>
+
+    <script>
+        var l = console.log.bind(console)	//   *global*
+    </script>
+
+    <script type = "text/javascript"
+        src = "js/events.js">
+    </script>
+
+    <script type = "text/javascript"
+        src = "js/main.js">
+    </script>
+
+<!-- ================================================================================================== -->
+<!-- ================================================================================================== -->
+<!-- ================================================================================================== -->
+<!-- ================================================================================================== -->
+<!-- ================================================================================================== -->
+<!-- ================================================================================================== -->
+
+
+<!-- ================================================================================================== -->
+
+<script id="partial_boardcards" type="text/x-handlebars-template">
+{{c1}}{{c2}}{{c3}}{{c4}}{{c5}}
+</script>
+<script>
+	$( document ).ready(function() {
+		var template = new template_class("partial_boardcards","partial_boardcards", [], [])    // , template_tags, fields
+		all_templates.push(template)
+        Handlebars.registerPartial('partial_boardcards', template.source);
+
+        template.ex1.c1 = "KH"
+        template.ex1.c2 = "KD"
+        template.ex1.c3 = "KS"
+        template.ex1.c4 = "KC"
+        template.ex1.c5 = "7H"
+
+
+        Handlebars.registerHelper("link", function(text, options) {
+            var attributes = [];
+
+            Object.keys(options.hash).forEach(key => {
+                var escapedKey = Handlebars.escapeExpression(key);
+                var escapedValue = Handlebars.escapeExpression(options.hash[key]);
+                attributes.push(escapedKey + '="' + escapedValue + '"');
+            })
+            var escapedText = Handlebars.escapeExpression(text);
+
+            var escapedOutput ="<a " + attributes.join(" ") + ">" + escapedText + "</a>";
+            return new Handlebars.SafeString(escapedOutput);
+        });
+
+
+
+
+
+	})
+</script>
+
+<!-- ================================================================================================== -->
+
+<script id="poker_spot_seed1" type="text/x-handlebars-template">
+
+{{> partial_boardcards   }}
+
+{{boardcards}}
+
+betting on {{gamestage}}:
+
+{{{table_and_users_and_boardcards boardcards}}}
+
+Action: {{action_so_far}}  {{action_assessments}}
+
+{{left}} {{right}}      {{handfamily}}   {{handfamily_stats}}
+
+to call: {{to_call}} {{currency}}
+
+Pot: {{pot}} {{currency}}
+
+Stack: {{stack}} {{currency}}
+
+Position: {{position}}
+
+Spieler: {{number_of_players}}
+
+Bigblind: {{BB}} {{currency}}
+
+
+
+<form id="playeraction" name="playeraction">
+    <button>min</button><button>max</button><button>pot / 2</button>
+    <input name="bet" type="number" value="{{BB}}" min="{{BB}}" max="{{stack}}"><button>fold</button><button>call</button><button>check</button>
+    <button>send</button>
+</form>
+
+
+
+</script>
+
+<script>
+	$( document ).ready(function() {
+
+
+		var template_tags = ["poker", "spot", "seed", "playeraction"]
+		var fields = [{}]
+		var template = new template_class("poker_spot_seed1","poker_spot_seed1", template_tags, fields)
+		all_templates.push(template)
+
+        template.ex1.left = "QH"
+        template.ex1.right = "KH"
+        template.ex1.handfamily = "KQs"
+        template.ex1.boardcards = {}
+        template.ex1.action_so_far = [ "SB", "BB" ]
+        template.ex1.position = 3
+        template.ex1.number_of_players = 3
+        template.ex1.BB = 800
+        template.ex1.pot = 1200
+        template.ex1.stack = 32000
+        template.ex1.currency = "€"
+        template.ex1.to_call = 800
+        template.ex1.boardcards.c1 = "TH"
+        template.ex1.boardcards.c2 = "TD"
+        template.ex1.boardcards.c3 = "TS"
+        template.ex1.boardcards.c4 = "TC"
+        template.ex1.gamestage = "pre-flop"
+
+        Handlebars.registerHelper('table_and_users_and_boardcards', function (str) {
+            return str + "<br>"
+        })
+
+
+
+	})
+</script>
+
+
+<!-- ================================================================================================== -->
+
+<script id="system_list_project" type="text/x-handlebars-template">
+{{{zero}}} ENTWURF
+</script>
+
+<script>
+	$( document ).ready(function() {
+
+		// *global* //
+		system_templates["list_project"] = Handlebars.compile(document.getElementById("system_list_project").innerHTML)
+
+		var template_tags = ["system", "master-project"]
+		var fields = [{}]
+		var template = new template_class("system_list_project","list_project", template_tags, fields)
+		all_templates.push(template)
+	})
+</script>
+
+
+<!-- ================================================================================================== -->
+
+<script id="system_sourcedisplay" type="text/x-handlebars-template">
+<div class='raw_template'>{{template}}</div>
+</script>
+
+<script>
+	$( document ).ready(function() {
+
+		// *global* //
+		system_templates["sourcedisplay"] = Handlebars.compile(document.getElementById("system_sourcedisplay").innerHTML)
+
+		var template_tags = ["system", "master-project"]
+		var fields = [{}]
+		var template = new template_class("system_sourcedisplay","template_sourcedisplay", template_tags, fields)
+		all_templates.push(template)
+	})
+</script>
+
+
+<!-- ================================================================================================== -->
+
+<script id="system_list_template" type="text/x-handlebars-template">
+<div class='float_left template_heading'>
+[{{index}}]
+</div>
+<div class='float_left template_heading bold'>
+{{name}}
+</div>
+<div class='float_left template_heading'>
+{{tags}}
+</div>
+<br style='clear:all'>
+<div class='raw_template'>{{template}}</div>
+</script>
+
+<script>
+	$( document ).ready(function() {
+
+		// *global* //
+
+		system_templates["list_template"] = Handlebars.compile(document.getElementById("system_list_template").innerHTML)
+
+		var template_tags = ["system"]
+		var fields = [{},{},{},{}]
+		var template = new template_class("system_list_template","list_template", template_tags, fields)
+		all_templates.push(template)
+	})
+</script>
+
+
+<!-- ================================================================================================== -->
+
+<script id="system_list_template_head" type="text/x-handlebars-template">
+<div class="show_template">
+    <div class="upper_bar">ok
+        <div class='float_left template_heading'>
+        [{{index}}]
+        </div>
+        <div class='float_left template_heading bold'>
+        {{name}}
+        </div>
+        <div class='float_left template_heading template_tags'>
+        {{tags}}
+        </div>
+        <div class='float_left template_heading'>
+            {{#each links}}
+                <a href="{{this}}">[link]</a>
+            {{/each}}
+        </div>
+        oder nicht ok?
+    </div>
+
+    <br style='clear:both'>
+    <div class="code1"><h1 class="shy">pattern</h1>
+    {{code1}}
+    </div>
+    <div class="example_contextobject"><h1 class="shy">context object</h1>
+    {{example1}}
+    </div>
+    <div class="code1_output"><h1 class="shy">view</h1>
+    {{{code1_output}}}
+    <br>
+    </div>
+</div>
+
+
+</script>
+
+<script>
+	$( document ).ready(function() {
+
+		// *global* //
+
+		system_templates["list_template_head"] = Handlebars.compile(document.getElementById("system_list_template_head").innerHTML)
+
+		var template_tags = ["system"]
+		var fields = [{},{},{},{}]
+		var template = new template_class("system_list_template_head","list_template_head", template_tags, fields)
+		all_templates.push(template)
+	})
+</script>
+
+
+<!-- ================================================================================================== -->
+
+<script id="003" type="text/x-handlebars-template">
+<div class="{{class1}}"><span class="{{class1_1}}">{{name}}</span><span class="{{class1_2}}">{{value}}</span></div>
+</script>
+
+<script>
+	$( document ).ready(function() {
+		var fields = [new field_deskriptor_class( "", "", "", "name", "i am a name-field", [], [],
+				new field_typer_class("text-short")  )  ,
+
+			new field_deskriptor_class( "", "", "", "value", "i am a value-field", [], [],
+				new field_typer_class("text-short")  )
+		]
+
+		var template_tags = ["html-body", "basic"]
+		var template = new template_class("003","name_and_value_2", template_tags, fields)
+		all_templates.push(template)
+	});
+</script>
+
+<!-- ================================================================================================== -->
+
+<!--
+<script id="" type="text/x-handlebars-template"></script>
+
+<script>
+	$( document ).ready(function() {
+
+
+	});
+</script>
+-->
+
+
+<!-- ================================================================================================== -->
+
+<script id="test_helper" type="text/x-handlebars-template"><div>{{olli "wow"}}</div></script>
+
+<script>
+	$( document ).ready(function() {
+		var template_tags = ["handlebars-test" ]
+		var fields = []
+		var template = new template_class("test_helper","test_helper", template_tags, fields)
+		template.addURL("https://handlebarsjs.com/guide/expressions.html")
+		all_templates.push(template)
+	});
+
+    Handlebars.registerHelper('olli', function (aString) {
+        return aString.toUpperCase()
+    })
+
+</script>
+
+<!-- ================================================================================================== -->
+
+<script id="pattern111" type="text/x-handlebars-template"><div>this is pattern111</div></script>
+
+<script>
+	$( document ).ready(function() {
+		var template_tags = ["experiment" ]
+		var fields = []
+		var template = new template_class("pattern111","pattern111", template_tags, fields)
+		template.addURL("https://handlebarsjs.com/guide/expressions.html")
+		all_templates.push(template)
+	});
+
+</script>
+
+
+<!-- ================================================================================================== -->
+<!--
+https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introducing ================================================================================================== -->
+<!-- ================================================================================================== -->
+
+<script>
+	$( document ).ready(function() {
+        project_manager.list_all_projects()
+        project_manager.runfirst()
+        call_ui()
+	});
+</script>
+</head>
+<body>
+
+
+<div id="container1">
+    <div id="start0"></div>
+    <div id="start1"></div>
+    <div id="start2"></div>
+    <div id="main0"></div>
+    <div id="main1"></div>
+    <div id="main2"></div>
+    <div id="end0"></div>
+    <div id="end1"></div>
+    <div id="end2"></div>
+</div>
+
+</body>
+</html>
