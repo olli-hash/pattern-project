@@ -10,8 +10,9 @@
 
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <style>
+
 
     </style>
 
@@ -21,6 +22,10 @@
 
     <script type = "text/javascript"
         src = "js/handlebars-v4.5.3.js">
+    </script>
+
+    <script type = "text/javascript"
+        src = "jquery-handlebars/jquery-handlebars-1.1.4.min.js">
     </script>
 
     <script>
@@ -574,6 +579,21 @@ Send this stuff!
 
 </script>
 
+<!-- ================================================================================================== -->
+
+<script id="example_ajax1" type="text/x-handlebars-template"><button id="ajax1">Load Content</button><button id="ajax2">Load Content</button><button id="ajax3">Load Content</button></script>
+
+<script>
+	$( document ).ready(function() {
+		var template_tags = ["experiment" ]
+		var fields = []
+		var template = new template_class("example_ajax1","example_ajax1", template_tags, fields)
+		template.addURL("https://handlebarsjs.com/guide/expressions.html")
+		all_templates.push(template)
+	});
+
+</script>
+
 
 <!-- ================================================================================================== -->
 <!--
@@ -584,12 +604,12 @@ https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous/Introduci
 	$( document ).ready(function() {
         project_manager.list_all_projects()
         project_manager.runfirst()
+
         call_ui()
 	});
 </script>
 </head>
 <body>
-
 
 <div id="container1">
     <div id="start0"></div>
