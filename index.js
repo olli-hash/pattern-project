@@ -22,8 +22,6 @@ app.get("/basic_index.html", function(req, res){
 
 app.get("/ajax_getsomething", function(req, res){
 
-    // res.send("hi")
-
     res.send({   friend: "Oliver", age:40          })
 
 })

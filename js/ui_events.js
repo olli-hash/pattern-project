@@ -4,6 +4,43 @@ function call_ui() {
     var laststate = true
 
     // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+    // JSON empfangen, Funktionen empfangen, Templates empfangen
+
+    $("#ajax1").click(function(e){
+        e.stopPropagation()
+        $.ajax({
+            url: "http://rest-service.guides.spring.io/greeting"
+        }).then(function(data) {
+           $('#ajax1').append(data.id);
+           $('#ajax1').append(data.content);
+        })
+    })
+
+    $("#ajax2").click(function(e){
+        e.stopPropagation()
+        $.ajax({
+            url: "http://localhost:8080/ajax_getsomething"
+        }).then(function(data) {
+           $('#ajax2').append(data.friend);
+           $('#ajax2').append(data.age);
+        })
+    })
+
+    $("#ajax3").click(function(e){
+        e.stopPropagation()
+    })
+
+
+    // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
+
+    $( window ).on( "load", function() {
+        console.log("--- page has been loaded ---")
+
+            // https://learn.jquery.com/using-jquery-core/document-ready/
+    })
+
+    // ----- ----- ----- ----- ----- ----- ----- ----- ----- ----- -----
     $('form').on("click", function() {
         var ui_ex3_state1 = {
             transition : "2s" ,
@@ -53,35 +90,5 @@ function call_ui() {
         $(this).parent().children(".code1_output").slideDown()
         $(this).parent().children(".example_contextobject").slideDown()
     })
-
-
-
-    $("#ajax1").click(function(e){
-        e.stopPropagation()
-        $.ajax({
-            url: "http://rest-service.guides.spring.io/greeting"
-        }).then(function(data) {
-           $('#ajax1').append(data.id);
-           $('#ajax1').append(data.content);
-        })
-
-    })
-    $("#ajax2").click(function(e){
-        e.stopPropagation()
-    })
-    $("#ajax3").click(function(e){
-        e.stopPropagation()
-
-    })
-
-
-
-
-    $( window ).on( "load", function() {
-        console.log("--- page has been loaded ---")
-
-            // https://learn.jquery.com/using-jquery-core/document-ready/
-    })
-
 
 }
